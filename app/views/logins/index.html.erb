@@ -1,0 +1,28 @@
+<div class="container">
+  <h1>Log In</h1>
+  <div class="jumbotron">
+    <%= form_with scope: :login, url: sessions_create_path	 ,local: true do |form| %>
+			<% if @login.errors.any? %>
+	      <div id="error_explanation">
+	        <ul>
+	          <% @login.errors.full_messages.each do |msg| %>
+	            <li style="color:gray;"><%= msg %></li>
+	          <% end %>
+	        </ul>
+	      </div>
+	    <% end %>
+			<div class="form-group">
+        <%= form.select(:logintype,["Admin","Project Manager"],{include_blank: 'Select Login Type'},{class:"form-control", required: 'true'})%>
+      </div>
+			<div class="form-group">
+     		<%= form.text_field :username , placeholder:'Enter Email id', class:"form-control", required:true %>
+			</div>
+			<div class="form-group">
+      	<%= form.password_field :password , placeholder:'Enter Password', class:"form-control", required:true %>
+			</div>
+			<div class="form-group">
+				<%= form.submit 'Login' ,class:"btn btn-primary btn-md"%>
+			</div>
+		<%end%>
+	</div>
+</div>

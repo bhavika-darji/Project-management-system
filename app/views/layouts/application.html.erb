@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ProjectManagement</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if session[:checkuser_id]!=nil %>
+      <% @type = Login.ProvideType(session[:checkuser_id])%>
+      <% if @type == 'Admin'%>
+        <%= render 'layouts/navigationadmin'%>
+      <% else %>
+        <%= render 'layouts/navigationlogout'%>
+      <%end%>
+    <%else %>
+      <%= render 'layouts/navigation'%>
+    <% end%>
+      <%= render 'layouts/message'%>
+      <%= yield %>
+  </body>
+</html>

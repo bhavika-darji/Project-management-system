@@ -1,0 +1,22 @@
+<div class="container">
+  <h1  style="font-family:arial">Listing All Clients</h1>
+  <div class="jumbotron">
+    <table class="table table-striped">
+      <tr>
+        <th>Name</th>
+        <th>Country</th>
+        <th></th>
+        <th></th>
+      </tr>
+     <% @client.each do |client| %>
+      <tr>
+          <td><%= client.name %></td>
+          <td><%= client.country %></td>
+          <td><%= link_to 'Edit', edit_client_path(client) %></td>
+          <td><%= link_to 'Delete', client_path(client),method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+      <% end %>
+    </table>
+   <%= link_to 'Add Client', new_client_path,class:"btn btn-primary btn-md" %>
+  
+</div>

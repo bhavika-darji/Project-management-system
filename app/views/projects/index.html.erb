@@ -1,0 +1,50 @@
+<div class="container">
+  <h1  style="font-family:arial">Listing All Project</h1>
+  <div class="jumbotron">
+    <form>
+      <div class="col-sm-8" style="padding:0px 25px 0px 0px">
+      <%= select_tag :qry, options_for_select(Employee.providePM),{include_blank: 'Select Project Manager', class:"form-control"}%>
+    </div>
+      <button type='submit' class="btn btn-primary">Filter</button>
+      <%= link_to 'Show All', projects_path,class:"btn btn-primary btn-md" %>
+    </form>
+    <br/>
+    <table class="table table-striped">
+      <tr>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Budget</th>
+        <th>Project Manager</th>
+        <th>Client</th>
+        <th>Technology</th>
+        <th>Employees</th>
+        <th>Action</th>
+        <th></th>
+      </tr>
+     <% @project.each do |project| %>
+      <tr>
+        <td><%= project.name %></td>
+        <td><%= project.start_date %></td>
+        <td><%= project.end_date %></td>
+        <td><%= project.budget %></td>
+        <td><%= project.projectPM(project.pm).name %></td>
+        <td><%= project.client.name %></td>
+        <td><%= project.technology.name %></td>
+        <% l = project.projectPM(project.employee).length %>
+        <td>
+          <% project.projectPM(project.employee).each_with_index do |employee,index|%>
+              <%if l == index+1%>
+              <%= employee.name%>
+              <%else%>
+              <%= employee.name+',' %>
+              <% end %>
+            <%end%>
+        </td>
+        <td><%= link_to 'Edit', edit_project_path(project) %></td>
+        <td><%= link_to 'Delete', project_path(project) ,method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+      <% end %>
+    </table>
+   <%= link_to 'Add Project', new_project_path,class:"btn btn-primary btn-md" %>
+</div>

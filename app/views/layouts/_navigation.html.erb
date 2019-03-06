@@ -1,0 +1,19 @@
+<nav class="navbar navbar-light"  style="background-color:#FFbc34; border-radius:0px;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+       <a class="navbar-brand" href="#" style= "color:black">Bacancy Technology</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><%= link_to "Employees", employees_path, style: 'color:black' %></li>
+      <li><%= link_to "Projects", projects_path, style: 'color:black' %></li>
+      <li><%= link_to "Clients", clients_path ,style: 'color:black' %></li>
+      <li><%= link_to "Technology", technologies_path,  style: 'color:black'%></li>
+    </ul>
+        <ul class="nav navbar-nav navbar-right">
+      <li><%=link_to logins_path , style: 'color:black' do %>
+        <i class="glyphicon glyphicon-log-in" style= "color:black"></i> Login
+        <%end%>  
+    </ul>
+  </div>
+</nav> 
+

@@ -1,0 +1,30 @@
+<div class="container">
+  <h1  style="font-family:arial">Listing All employees</h1>
+  <div class="jumbotron">
+    <table class="table table-striped">
+      <tr>
+        <th>Name</th>
+        <th>E-mail</th>
+        <th>Experience</th>
+        <th>Technology</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th></th>
+        <th></th>
+      </tr>
+     <% @employee.each do |employee| %>
+      <tr>
+          <td><%= employee.name %></td>
+          <td><%= employee.email %></td>
+          <td><%= employee.experience %></td>
+          <td><%= employee.tech(employee.name) %></td>
+
+          <td><%= employee.role %></td>
+          <td><%= {"Active"=>true,"Deactive"=>false}.index(employee.status) %></td>
+         <td><%= link_to 'Edit', edit_employee_path(employee)%></td>
+          <td><%= link_to 'Delete', employee_path(employee),method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+      <% end %>
+    </table>
+   <%= link_to 'Add Employee', new_employee_path,class:"btn btn-primary btn-md" %>
+</div>

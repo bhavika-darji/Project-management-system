@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>Add New Technology</h1>
+    <div class="jumbotron">
+      <%= form_with scope: :technology, url: technologies_path  ,local: true do |form| %>
+        <% if @technology.errors.any? %>
+          <div id="error_explanation">
+            <ul>
+              <% @technology.errors.full_messages.each do |msg| %>
+                <li style="color:gray;"><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="form-group">
+          <%= form.text_field :name , placeholder:'Enter Name',class:"form-control", required: true  %>
+        </div>
+        <%= form.submit 'Submit' ,class:"btn btn-primary btn-md"%>
+       <%= link_to 'Back', technologies_path, class:"btn btn-primary btn-md"%>
+      <% end %>
+    </div>
+</div>
